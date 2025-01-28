@@ -1,0 +1,11 @@
+with-compiler: ghc-9.10
+
+packages: .
+
+multi-repl: True
+
+allow-newer:
+  cabal-plan:base
+
+package *
+  ghc-options: -fwrite-ide-info -hiedir /Users/Fraser/Code/IOG/reverse-dep-finder/hies

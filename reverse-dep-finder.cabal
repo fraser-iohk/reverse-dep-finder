@@ -1,0 +1,64 @@
+cabal-version: 3.0
+name: reverse-dep-finder
+version: 0.1.0.0
+license: NONE
+build-type: Simple
+extra-doc-files: CHANGELOG.md
+
+common warnings
+  ghc-options: -Wall -Wextra -Wcompat
+
+common language
+  default-language: GHC2021
+  default-extensions:
+    BlockArguments
+    LambdaCase
+    OverloadedStrings
+    RecordWildCards
+
+library
+  import: warnings
+  import: language
+
+  hs-source-dirs: src
+  build-depends:
+    base >=4.14 && <5,
+    array,
+    bytestring,
+    cabal-plan,
+    cassava,
+    containers,
+    ghc,
+    Glob,
+    foldl,
+    lens,
+    streaming,
+    text,
+    transformers,
+  exposed-modules:
+    ReverseDepFinder
+
+executable reverse-dep-finder
+  import: warnings
+  import: language
+
+  hs-source-dirs: app
+  main-is: Main.hs
+  build-depends:
+    base,
+    reverse-dep-finder,
+    cabal-plan,
+    optparse-applicative,
+  other-modules:
+    Options
+
+test-suite reverse-dep-finder-spec
+  import: warnings
+  import: language
+
+  type: exitcode-stdio-1.0
+  hs-source-dirs: spec
+  main-is: Main.hs
+  build-depends:
+    base,
+    reverse-dep-finder
